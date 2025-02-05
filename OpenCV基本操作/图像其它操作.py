@@ -16,7 +16,7 @@ img[100,100] = (0,255,0)
 print(img[100,100,1])
 
 """显示图像属性"""
-print(f"{img.shape};{img.dtype};{img.size}")
+print(f"**{img.shape};{img.dtype};{img.size}")
 
 """图像通道拆分与合并"""
 gpl = cv.imread("1.png")
