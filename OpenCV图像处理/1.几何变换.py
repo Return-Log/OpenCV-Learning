@@ -32,9 +32,24 @@ rows, cols = kids.shape[:2]
 # plt.show()
 
 """仿射变换"""
-pts1 = np.float32([[50,50],[200,50],[50,200]])
-pts2 = np.float32([[30,60],[128,65],[45,135]])
-M = cv.getAffineTransform(pts1,pts2)
-res4 = cv.warpAffine(kids,M,(cols,rows))
-plt.imshow(res4[:,:,::-1])
-plt.show()
+# pts1 = np.float32([[50,50],[200,50],[50,200]])
+# pts2 = np.float32([[30,60],[128,65],[45,135]])
+# M = cv.getAffineTransform(pts1,pts2)
+# res4 = cv.warpAffine(kids,M,(cols,rows))
+# plt.imshow(res4[:,:,::-1])
+# plt.show()
+
+"""透射变换"""
+# pst1 = np.float32([[12,12],[34,65],[28,123],[234,124]])
+# pst2 = np.float32([[172,12],[27,65],[28,13],[34,124]])
+# T = cv.getPerspectiveTransform(pst1,pst2)
+# res5 = cv.warpPerspective(kids,T,(cols,rows))
+# plt.imshow(res5[:,:,::-1])
+# plt.show()
+
+"""图形金字塔"""
+print(kids.shape[:2])
+imgup = cv.pyrUp(kids)
+print(imgup.shape[:2])
+imdown = cv.pyrDown(kids)
+print(imdown.shape[:2])
