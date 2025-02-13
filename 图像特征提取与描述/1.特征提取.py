@@ -1,3 +1,4 @@
+import cv2.cv2
 import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
@@ -12,14 +13,23 @@ import matplotlib.pyplot as plt
 # plt.show()
 
 """shi-tomas"""
-img = cv.imread("jiao.jpg")
-gray = cv.cvtColor(img,cv.COLOR_BGR2GRAY)
-coners = cv.goodFeaturesToTrack(gray,10,0.3,10)
-num = 0
-for i in coners:
-    x,y = i.ravel()
-    cv.circle(img,(x,y),2,(0,255,0),-1)
-    num += 1
-print(num)
+# img = cv.imread("jiao.jpg")
+# gray = cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+# coners = cv.goodFeaturesToTrack(gray,10,0.3,10)
+# num = 0
+# for i in coners:
+#     x,y = i.ravel()
+#     cv.circle(img,(x,y),2,(0,255,0),-1)
+#     num += 1
+# print(num)
+# plt.imshow(img[:,:,::-1])
+# plt.show()
+
+"""SIFT"""
+img = cv2.cv2.imread("jiao.jpg")
+gray = cv2.cv2.cvtColor(img, cv2.cv2.COLOR_BGR2GRAY)
+sift = cv.xfeatures2d.SIFT_create()
+kp, des = sift.detectAndCompute(gray,None)
+cv2.cv2.drawKeypoints(img,kp,img,flags=cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 plt.imshow(img[:,:,::-1])
 plt.show()
