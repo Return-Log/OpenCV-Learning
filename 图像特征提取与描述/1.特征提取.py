@@ -1,7 +1,10 @@
+from sys import flags
+
 import cv2.cv2
 import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
+from cv2.cv2 import threshold
 
 """harris角点检测"""
 # img = cv.imread("jiao.jpg")
@@ -26,10 +29,27 @@ import matplotlib.pyplot as plt
 # plt.show()
 
 """SIFT"""
+# img = cv2.cv2.imread("jiao.jpg")
+# gray = cv2.cv2.cvtColor(img, cv2.cv2.COLOR_BGR2GRAY)
+# sift = cv.xfeatures2d.SIFT_create()
+# kp, des = sift.detectAndCompute(gray,None)
+# cv2.cv2.drawKeypoints(img,kp,img,flags=cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+# plt.imshow(img[:,:,::-1])
+# plt.show()
+
+"""FAST"""
+# img = cv2.cv2.imread("jiao.jpg")
+# fast = cv.FastFeatureDetector_create(threshold=30)
+# fast.setNonmaxSuppression(1)
+# kp = fast.detect(img,None)
+# img2 = cv.drawKeypoints(img,kp,None,color=(0,0,255))
+# plt.imshow(img2[:,:,::-1])
+# plt.show()
+
+"""ORB"""
 img = cv2.cv2.imread("jiao.jpg")
-gray = cv2.cv2.cvtColor(img, cv2.cv2.COLOR_BGR2GRAY)
-sift = cv.xfeatures2d.SIFT_create()
-kp, des = sift.detectAndCompute(gray,None)
-cv2.cv2.drawKeypoints(img,kp,img,flags=cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
-plt.imshow(img[:,:,::-1])
+orb = cv.ORB_create(nfeatures=100)
+kp,des = orb.detectAndCompute(img,None)
+img2 = cv.drawKeypoints(img,kp,None,flags=0)
+plt.imshow(img2[:,:,::-1])
 plt.show()
